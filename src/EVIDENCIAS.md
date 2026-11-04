@@ -44,3 +44,68 @@
 | R3 | `Pedido` (Métodos de cálculo) | Código duplicado al invocar de forma repetida y redundante la función `calcularSubtotal()`. | Se almacenó el resultado en una variable local al inicio de cada método de cálculo para reutilizarlo. |
 | R4 | `Brunch.getMenu()` | Lista interna expuesta que rompía el encapsulamiento al retornar la colección directamente. | Se modificó para retornar una copia defensiva (`new ArrayList<>(menu)`). |
 | R5 | `Brunch` (Método privado auxiliar) | Código difícil de leer debido a un método auxiliar con un nombre críptico y de una sola letra (`v()`). | Se refactorizó cambiando su nombre por uno semántico y claro (`validarDisponibilidad()`). |
+
+## 4. Salida final del programa
+=== 1. Carta del domingo ===
+  - PlatoFuerte [PLA-001] Calentado paisa - $26000 (20 min) [Stock: 8]
+  - PlatoFuerte [PLA-002] Calentado con chicharrón - $32000 (25 min) [Stock: 6]
+  - PlatoFuerte [PLA-003] Huevos pericos con arepa - $18000 (28 min) [Stock: 10]
+  - PlatoFuerte [PLA-004] Arepa de chócolo con quesito - $16000 (28 min) [Stock: 5]
+  - Bebida [BEB-001] Tinto de Jardín - $5000 (4 min) [Stock: 30]
+  - Bebida [BEB-002] Chocolate en leche - $7000 (4 min) [Stock: 20]
+  - Bebida [BEB-003] Jugo de mandarina - $11500 (6 min) [Stock: 15]
+  - Bebida [BEB-004] Limonada de coco - $18000 (6 min) [Stock: 15]
+  - Panaderia [PAN-001] Pandequeso - $7000 (12 min) [Stock: 12]
+  - Panaderia [PAN-002] Buñuelo - $9000 (3 min) [Stock: 5]
+
+=== 2. Búsquedas y disponibilidad ===
+Buscar pan-001: Pandequeso
+Buscar XXX-999: no encontrado
+¿Se puede vender 1 arepa? true
+Se acabó el chócolo. ¿Se puede vender 1 arepa? false
+
+=== 3. Mesas ===
+¿La mesa 3 recibe a 6 personas? true
+¿La mesa 3 recibe a 7 personas? false
+
+=== 4. Pedidos ===
+¿Se vendió la arepa no disponible? false
+¿Se vendieron 6 buñuelos? false
+¿Se vendieron 2 buñuelos? true
+¿Se abrió el pedido de la mesa 9? false
+¿Se abrió otro pedido en la mesa 3? false
+Comanda de la familia:
+  - 2 x Calentado con chicharrón + Aguacate + Quesito -> Cocina
+  - 2 x Huevos pericos con arepa -> Cocina
+  - 4 x Chocolate en leche -> Barra
+  - 3 x Jugo de mandarina -> Barra
+  - 1 x Pandequeso -> Horno
+Quedan de chocolate: 16
+Quedan de buñuelo: 3
+Pedido de amigos, ¿vegetariano? false
+Pedido de pareja, ¿vegetariano? true
+
+=== 5. Cuentas ===
+Pedido [PED-001] mesa 3, 4 personas, 25 min, total $195939
+Subtotal $184500 | Descuento $18450 | Impoconsumo $13284 | Propina $16685 | Total $195939
+Pedido [PED-002] mesa 2, 4 personas, 28 min, total $116640
+Subtotal $108000 | Descuento $0 | Impoconsumo $8640 | Propina $0 | Total $116640
+Pedido [PED-003] mesa 1, 2 personas, 28 min, total $87320
+Subtotal $74000 | Descuento $0 | Impoconsumo $5920 | Propina $7480 | Total $87320
+
+=== 6. Cierre del día ===
+¿Se cerró la familia? true
+¿Se cerró dos veces? false
+¿Se cerró la pareja? true
+¿La mesa 3 quedó libre? true
+¿Se abrió el siguiente grupo en la mesa 3? true
+Pedidos abiertos en el día: 4
+Ventas del día: $283259
+
+=== 7. Polimorfismo ===
+Como Identificable: PED-001
+Panaderia vale $7000
+Adicion vale $3500
+LineaPedido vale $79000
+Pedido vale $87320
+
