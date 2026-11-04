@@ -109,3 +109,10 @@ Adicion vale $3500
 LineaPedido vale $79000
 Pedido vale $87320
 
+## 5. Concepts de POO en este proyecto
+En 2 o 3 líneas cada uno, expliquen DÓNDE se usa en este código:
+- **Encapsulamiento:** Se aplica ocultando los atributos (como `stock`, `precio`, `lineas`) mediante modificadores `private`, exponiéndolos de forma segura con métodos `get` y `set`, y protegiendo las colecciones internas con copias defensivas (`new ArrayList<>(menu)`).
+- **Herencia:** Se utiliza en la jerarquía de `ProductoMenu`, donde las clases hijas (`PlatoFuerte`, `Bebida`, `Panaderia`) heredan los atributos y comportamientos base, evitando la duplicación de código.
+- **Abstracción:** Se evidencia en la clase `ProductoMenu` al definir la estructura general de los productos del menú y declarar el método abstracto `obtenerEstacion()`, obligando a las clases hijas a definir su propia lógica.
+- **Interfaz:** Se usan dos interfaces: `Identificable` (implementada por `Pedido` para gestionar códigos únicos) y `Cobrable` (implementada por `ProductoMenu`, `LineaPedido`, `Adicion` y `Pedido` para estandarizar el cálculo de precios).
+- **Polimorfismo:** Se aplica en `LineaPedido.obtenerEstacion()` al delegar la estación en el producto mediante métodos sobrescritos, y en la sección 7 del Main al tratar objetos de diferentes clases de manera uniforme a través de la interfaz `Cobrable`.
