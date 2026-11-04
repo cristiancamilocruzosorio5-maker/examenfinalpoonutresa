@@ -35,3 +35,12 @@
 | 8 | `Pedido.calcularPropina()` | Incluía erróneamente el valor del impoconsumo dentro de la base de cálculo para la propina voluntaria. | Sección 5 (Cuentas - Familia) | Se calculó la propina exclusivamente sobre el subtotal menos el descuento, sin sumar el impoconsumo. |
 | 9 | `Pedido.esVegetariano()` | Retornaba `true` prematuramente tras evaluar únicamente el primer elemento de la lista sin revisar los demás. | Sección 4 (Pedidos - Vegetariano) | Se estructuró el bucle para que retorne `false` al encontrar un solo producto no vegetariano, y `true` solo si todos lo cumplen. |
 | 10 | `Brunch.abrirPedido()` y `cerrarPedido()` | No validaba adecuadamente si la mesa seleccionada estaba ocupada, y al cobrar olvidaba liberar la mesa para el siguiente grupo. | Sección 6 (Cierre - Mesa libre) | Se integraron las validaciones de `mesa.isOcupada()`, `mesa.ocupar()` y `mesa.liberar()`. |
+
+## 3. Revisión de código
+| # | Archivo y método | Por qué era una mala práctica | Qué cambiamos |
+|---|------------------|-----------------------------|---------------|
+| R1 | `LineaPedido.obtenerEstacion()` | Polimorfismo desaprovechado con `instanceof`, violando OCP ante nuevas clases. | Se implementó el método abstracto `obtenerEstacion()` en `ProductoMenu` y se sobrescribió polimórficamente en cada clase hija. |
+| R2 | `Pedido` (Cálculos financieros) | Uso de números mágicos (valores literales sueltos sin contexto como `0.10` o `150000`). | Se declararon constantes estáticas descriptivas (`TASA_DESCUENTO`, `TASA_IMPOCONSUMO`, etc.). |
+| R3 | `Pedido` (Métodos de cálculo) | Código duplicado al invocar de forma repetida y redundante la función `calcularSubtotal()`. | Se almacenó el resultado en una variable local al inicio de cada método de cálculo para reutilizarlo. |
+| R4 | `Brunch.getMenu()` | Lista interna expuesta que rompía el encapsulamiento al retornar la colección directamente. | Se modificó para retornar una copia defensiva (`new ArrayList<>(menu)`). |
+| R5 | `Brunch` (Método privado auxiliar) | Código difícil de leer debido a un método auxiliar con un nombre críptico y de una sola letra (`v()`). | Se refactorizó cambiando su nombre por uno semántico y claro (`validarDisponibilidad()`). |
